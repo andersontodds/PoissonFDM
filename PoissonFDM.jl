@@ -16,12 +16,12 @@
 #   SparseArrays
 #   Match
 
-V = function poissonFDM(V, BC, EPS, RHO, h) #argument V → V_0?
+V = function poissonFDM(V_0, BC, EPS, RHO, h) #argument V → V_0?
 
     EPS_0 = 8.854E-12 # permitivitty of free space; F/m
 
     # extract simulation domain size
-    (Ny,Nx) = size(V);
+    (Ny,Nx) = size(V_0);
 
     # total number of unknowns to solve for
     L = Nx*Ny;
@@ -139,7 +139,7 @@ V = function poissonFDM(V, BC, EPS, RHO, h) #argument V → V_0?
                 idx = idx + 1;
                 
                 # specify right-hand side as the potential at this point
-                b[n] = V[n];
+                b[n] = V_0[n];
             end
 
             # Top Neumann boundary
